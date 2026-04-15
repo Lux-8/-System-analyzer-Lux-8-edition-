@@ -6,14 +6,12 @@ from tkinter import filedialog, messagebox
 from send2trash import send2trash
 import matplotlib.pyplot as plt
 
-# -------- SYSTEM STATS --------
 def get_stats():
     cpu = psutil.cpu_percent(interval=1)
     ram = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
     return cpu, ram, disk
 
-# -------- RECOMMENDATIONS --------
 def get_recommendations(cpu, ram, disk):
     rec = []
 
@@ -29,7 +27,6 @@ def get_recommendations(cpu, ram, disk):
 
     return "\n".join(rec)
 
-# -------- CLEAN DESKTOP --------
 def clean_desktop():
     desktop = f"C:/Users/{os.getlogin()}/Desktop"
 
@@ -55,8 +52,7 @@ def clean_desktop():
             pass
 
     messagebox.showinfo("Done", "Desktop cleaned 🧹")
-
-# -------- CLEAN CUSTOM FOLDER --------
+    
 def clean_custom_folder():
     folder = filedialog.askdirectory()
 
@@ -86,7 +82,6 @@ def clean_custom_folder():
 
     messagebox.showinfo("Done", "Folder cleaned 🧹")
 
-# -------- GRAPH --------
 def show_graph():
     cpu, ram, disk = get_stats()
 
@@ -99,8 +94,7 @@ def show_graph():
     plt.ylabel("% Usage")
     plt.ylim(0, 100)
     plt.show()
-
-# -------- SYSTEM INFO --------
+    
 def show_info():
     cpu, ram, disk = get_stats()
 
@@ -111,7 +105,6 @@ def show_info():
         f"CPU: {cpu}%\nRAM: {ram}%\nDisk: {disk}%\n\n{rec}"
     )
 
-# -------- GUI --------
 app = tk.Tk()
 app.title("Lux-8 System Optimizer PRO")
 app.geometry("400x350")
